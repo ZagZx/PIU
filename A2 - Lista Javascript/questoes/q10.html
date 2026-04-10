@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><strong>Nome</strong></td>
+            <td><strong>Idade</strong></td>
+            <td><strong>Já foi à Disney?</strong></td>
+        </tr>
+
+        <tr>  
+            <td id="nome"></td>
+            <td id="idade"></td>
+            <td id="ja-foi-a-disney"></td>
+        </tr>
+    </table>
+
+        <script> 
+        function validarNome(nome) {
+            if (typeof nome !== "string") {
+                throw new Error("Nome deve ser string");
+            }
+            if (!nome) {
+                throw new Error("Nome deve conter caracteres");
+            }
+        }
+        function validarIdade(idade) {
+            if (!Number.isInteger(idade)) {
+                throw new Error("Idade deve ser inteiro");
+            }
+            if (idade < 0 || !idade) {
+                throw new Error("Idade deve ser um número positivo")
+            }
+
+        }
+        function validarFoiADisney(foiADisney) {
+            if (typeof foiADisney !== "boolean") {
+                throw new Error("Foi à disney deve ser booleano");
+            }
+        }
+
+        let nome;
+        let idade;
+        let foiADisney;
+
+        while (!nome) {
+            try {
+                nome = prompt('Digite o nome');
+                validarNome(nome);
+            } catch (error) {
+                alert(error.message)
+            }
+        }
+        while (!idade) {
+            try {
+                idade = Number(prompt('Digite a idade'));
+                validarIdade(idade);
+            } catch (error) {
+                alert(error.message)
+            }
+        }
+        while (typeof foiADisney !== "boolean") {
+            try {
+                foiADisney = confirm('Você já foi a Disney? (OK -> Sim | Cancelar -> Não)');
+                validarFoiADisney(foiADisney);
+            } catch (error) {
+                alert(error.message)
+            }
+        }
+
+        document.getElementById("nome").innerText = nome;
+        document.getElementById("idade").innerText = idade;
+
+        if (foiADisney) {
+            document.getElementById("ja-foi-a-disney").innerText = "Sim";
+        } else {
+            document.getElementById("ja-foi-a-disney").innerText = "Não";
+        }
+    </script>
+</body>
+</html>
