@@ -1,0 +1,1 @@
+Porque a variável não é redeclarada, apenas o valor do atributo.
